@@ -1,20 +1,13 @@
 import React from "react";
-import MealItem from "./MealItem";
+import MealsSummary from "./MealsSummary";
+import AvaliableMeals from "./AvaliableMeals";
 
-const Meals = (props) => {
+const Meals = () => {
     return(
-        <ul>
-            {props.meals.map( (meal) => {
-                return(
-                    <MealItem key={meal.id} 
-                        name={meal.name} 
-                        description={meal.description} 
-                        price={meal.price}
-                    />
-                )
-            }
-            )}
-        </ul>
+        <React.Fragment>
+            <MealsSummary />
+            <AvaliableMeals />
+        </React.Fragment>
     );
 };
 

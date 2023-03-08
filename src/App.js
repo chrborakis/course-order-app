@@ -1,22 +1,27 @@
-import React from 'react';
-import MainHeader from './Components/UI/MainHeader';
+import React, {useState} from 'react';
+import Header from './Components/Layout/Header';
 import Meals from './Components/Meals/Meals';
-import './App.css';
+import Cart from './Components/Cart/Cart';
 
 function App() {
+    const [ cartIsShown, setCartIsShown] = useState(false);
 
-    const mealsList = [
-        {id:"f01", name:"Sushi", description:"Finest fish and veggies", price:"22.99"},
-        {id:"f02", name:"Schnitzel", description:"A german specialty!", price:"16.50"},
-        {id:"f03", name:"Barbecue Burger", description:"American, raw, meaty", price:"12.99"},
-        {id:"f04", name:"Green Bowl", description:"Heathy...and...green...", price:"18.99"}
-    ];
+    const showCartHandler = () => {
+        setCartIsShown(true);
+    };
+
+    const hideCartHandler = () => {
+        setCartIsShown(false); 
+    };
 
     return (
-      <React.Fragment>
-        <MainHeader />
-        <Meals meals={mealsList}/>
-      </React.Fragment>
+        <React.Fragment>
+            { cartIsShown && <Cart onClose={hideCartHandler}/>}
+            <Header onShowCart={showCartHandler}/>
+            <main>
+                <Meals />
+            </main>
+        </React.Fragment>
     );
 }
 
